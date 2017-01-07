@@ -6,16 +6,16 @@ var searchYouTube = (options, callback) => {
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search',
     data: {
-      part: snippet,
+      part: 'snippet',
       q: query,
       key: apiKey,
-      maxResults: max
+      maxResults: max,
+      type: 'video'
     },
-    dataType: 'application/json',
+    
     type: 'GET',
     success: function(data) {
-      console.log('here');
-      callback(data);
+      callback(data.items);
     },
     error: function(e) {
       console.log('error', e);
